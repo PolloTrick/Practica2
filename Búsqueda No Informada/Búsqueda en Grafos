@@ -1,0 +1,28 @@
+from collections import deque
+
+def busqueda_grafos(grafo, inicio, objetivo):
+    visitados = set()
+    cola = deque([inicio])
+
+    while cola:
+        nodo = cola.popleft()
+
+        if nodo == objetivo:
+            return True
+
+        if nodo not in visitados:
+            visitados.add(nodo)
+
+            for vecino in grafo[nodo]:
+                cola.append(vecino)
+
+    return False
+
+grafo = {
+    'A': ['B', 'C'],
+    'B': ['D'],
+    'C': ['E'],
+    'D': [], 'E': []
+}
+
+print(busqueda_grafos(grafo, 'A', 'E'))
